@@ -1,5 +1,9 @@
 class Employee {
-  constructor(name, position, salary) {
+  name: string;
+  position: string;
+  salary: number;
+
+  constructor(name: string, position: string, salary: number) {
     this.name = name;
     this.position = position;
     this.salary = salary;
@@ -9,37 +13,45 @@ class Employee {
     return { name: this.name, position: this.position, salary: this.salary };
   }
 
-  changSalary(value) {
+  changSalary(value: number) {
     this.salary = value;
   }
 }
 
 class Director extends Employee {
-  constructor(name, position, salary) {
+  constructor(name: string, position: string, salary: number) {
     super(name, position, salary);
   }
 
-  increaseSalaryTwice(employee) {
+  increaseSalaryTwice(employee: Employee) {
     employee.changSalary(employee.getInfo().salary * 2);
   }
 }
 class Accountant extends Employee {
-  constructor(name, position, salary) {
+  constructor(name: string, position: string, salary: number) {
     super(name, position, salary);
   }
 
-  accountTax(employee) {
+  accountTax(employee: Employee) {
     const employeeSalary = employee.getInfo().salary;
     const taxesValue = { percent: 20 };
     return {
       salary: employeeSalary,
-      taxes: employeeSalary * taxesValue.percent / 100,
-      salaryAfterPayTax: employeeSalary - employeeSalary * taxesValue.percent / 100,
+      taxes: (employeeSalary * taxesValue.percent) / 100,
+      salaryAfterPayTax:
+        employeeSalary - (employeeSalary * taxesValue.percent) / 100,
     };
   }
 }
+
 class Driver extends Employee {
-  constructor(name, position, salary, drivingLicenseCategory) {
+  drivingLicenseCategory: string;
+  constructor(
+    name: string,
+    position: string,
+    salary: number,
+    drivingLicenseCategory: string
+  ) {
     super(name, position, salary);
     this.drivingLicenseCategory = drivingLicenseCategory;
   }
